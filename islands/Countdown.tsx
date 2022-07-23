@@ -33,6 +33,6 @@ export default function Countdown(props: { target: string }) {
 
   // Otherwise, we format the remaining time using `Intl.RelativeTimeFormat` and
   // render it.
-  const secondsLeft = Math.floor((target.getTime() - now.getTime()) / 1000);
+  const secondsLeft = 15;
   return <span>{timeFmt.format(secondsLeft, "seconds")}</span>;
 }
