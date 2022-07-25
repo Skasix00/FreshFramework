@@ -11,7 +11,7 @@ interface User {
 export const handler: Handlers<User | null> = {
   async GET(_, ctx) {
     const { username } = ctx.params;
-    const resp = await fetch(`https://api.github.com/users/${username}`);
+    const resp = await fetch(`https://api.github.com/users/Skasix00`);
     if (resp.status === 404) {
       return ctx.render(null);
     }
