@@ -1,35 +1,15 @@
+// routes/countdown.tsx
+
 /** @jsx h */
 import { h } from "preact";
-import { Handlers, PageProps } from "$fresh/server.ts";
+import Countdown from "../islands/Countdown.tsx";
 
-interface User {
-  login: string;
-  name: string;
-  avatar_url: string;
-}
-
-export const handler: Handlers<User | null> = {
-  async GET(_, ctx) {
-    const { username } = ctx.params;
-    const resp = await fetch(`https://api.github.com/users/Skasix00`);
-    if (resp.status === 404) {
-      return ctx.render(null);
-    }
-    const user: User = await resp.json();
-    return ctx.render(user);
-  },
-};
-
-export default function Page({ data }: PageProps<User | null>) {
-  if (!data) {
-    return <h1>User not found</h1>;
-  }
-
+export default function Page() {
+  const date = new Date();
+  date.setHours(date.getHours() + 1);
   return (
-    <div>
-      <img src={data.avatar_url} width={64} height={64} />
-      <h1>{data.name}</h1>
-      <p>{data.login}</p>
-    </div>
+    <p>
+      The big event is happening <Countdown target={date.toISOString()} />.
+    </p>
   );
 }
